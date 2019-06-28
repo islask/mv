@@ -1,0 +1,12 @@
+{
+	"personas": [{
+		"RoleID": "SELF",
+		"RoleText": "Myself"
+	}, {
+		"RoleID": "TEAM",
+		"RoleText": "My team"
+	}, {
+		"RoleID": "REPORTS",
+		"RoleText": "My Reporting Team"
+	}]
+}

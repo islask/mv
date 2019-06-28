@@ -1,0 +1,18 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:smartField="sap.ui.comp.smartfield" xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qldh.MV_Claim.controller.MVClaimForm" displayBlock="true">
+	<semantic:FullscreenPage xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="mvClaimForm" enableScrolling="{device>/system/phone}" title="{i18n>title}" busy="{viewModel>/Busy}" floatingFooter="true" navButtonPress="action" showNavButton="true" action:wiring="\{'navButtonPress':\{'navigation':\{'routeName':'ClaimInit'\}\}\}">
+		<uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" enableLazyLoading="false">
+			<uxap:headerTitle>
+				<uxap:ObjectPageHeader id="objectPageHeader" objectTitle="{FormName}" objectSubtitle="" objectImageShape="Circle" isActionAreaAlwaysVisible="false" isObjectIconAlwaysVisible="true" objectImageURI="sap-icon://insurance-car">
+					<uxap:actions/>
+					<uxap:navigationBar/>
+				</uxap:ObjectPageHeader>
+			</uxap:headerTitle>
+		</uxap:ObjectPageLayout>
+	<semantic:cancelAction>
+	    <semantic:CancelAction id="btnCancel"/>
+	</semantic:cancelAction>
+	<semantic:mainAction>
+	    <semantic:MainAction text="Submit" id="btnSubmit"/>
+	</semantic:mainAction>
+	</semantic:FullscreenPage>
+</mvc:View>

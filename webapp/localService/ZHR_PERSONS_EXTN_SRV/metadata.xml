@@ -1,0 +1,84 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHR_PERSONS_SRV" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="Messages" sap:content-version="1">
+				<Key><PropertyRef Name="Type"/><PropertyRef Name="Id"/></Key><Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Message type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Message Class" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Message number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogNo" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Log number" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LogMsgNo" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Message no." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="MessageV4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message Variable"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Parameter" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Parameter Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Row" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="Parameter line" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Field" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Field name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="System" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Logical system"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="Position" sap:content-version="1">
+				<Key><PropertyRef Name="PersonNumber"/><PropertyRef Name="PersonnelAssignmentNumber"/><PropertyRef Name="PositionNumber"/></Key><Property Name="PersonNumber" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Personnel No." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="PersonnelAssignmentNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="PositionNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Position Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PositionName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrganisationalUnitNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Org. Unit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrganisationalUnitName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/></EntityType>
+			<EntityType Name="PersonnelAssignments" sap:content-version="1">
+				<Key><PropertyRef Name="PersonNumber"/><PropertyRef Name="PersonnelAssignmentNumber"/></Key><Property Name="FirstName" Type="Edm.String" Nullable="false" MaxLength="85" sap:unicode="false" sap:label="First name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="WorkingHours" Type="Edm.Decimal" Nullable="false" Precision="5" Scale="2" sap:unicode="false" sap:label="Contracted Hours"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:unicode="false" sap:label="Message text"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PeriodEnd" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Time Stamp" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="Role" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Role" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="PositionNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Position Number"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonFullName" Type="Edm.String" Nullable="false" MaxLength="125" sap:unicode="false"
+					sap:label="Person name (with Nick Name)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="LastName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Last name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="PersonNumber" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Personnel No." sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="BirthDate" Type="Edm.DateTimeOffset" Precision="7" sap:unicode="false" sap:label="Birth date" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="PersonnelAssignmentNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Personnel No."
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="PersonName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Empl./appl.name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PositionName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrganisationalUnitNumber" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Org. Unit"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="OrganisationalUnitName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PeriodStart" Type="Edm.DateTimeOffset" Precision="7" sap:unicode="false" sap:label="PeriodStart" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><Property Name="MovementTypeCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="MovementTypeCode"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false"/><Property Name="Appname" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Application Type" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false"/><NavigationProperty Name="PositionNavn" Relationship="ZHR_PERSONS_SRV.PersonnelAssignmentToPosition"
+					FromRole="FromRole_PersonnelAssignmentToPosition" ToRole="ToRole_PersonnelAssignmentToPosition"/></EntityType>
+			<EntityType Name="Person" sap:content-version="1">
+				<Key><PropertyRef Name="PersonNumber"/></Key><Property Name="PersonNumber" Type="Edm.Int64" Nullable="false" sap:unicode="false" sap:label="Person ID" sap:creatable="false"
+					sap:updatable="false" sap:sortable="false" sap:filterable="false"/><Property Name="PersonName" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Person Name"
+					sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/><NavigationProperty Name="PersonnelAssignmentsNavn" Relationship="ZHR_PERSONS_SRV.PersonToPersonnelAssignmentsAssn"
+					FromRole="FromRole_PersonToPersonnelAssignmentsAssn" ToRole="ToRole_PersonToPersonnelAssignmentsAssn"/></EntityType>
+			<Association Name="PersonToPersonnelAssignmentsAssn" sap:content-version="1"><End Type="ZHR_PERSONS_SRV.Person" Multiplicity="1" Role="FromRole_PersonToPersonnelAssignmentsAssn"/><End Type="ZHR_PERSONS_SRV.PersonnelAssignments" Multiplicity="*" Role="ToRole_PersonToPersonnelAssignmentsAssn"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PersonToPersonnelAssignmentsAssn"><PropertyRef Name="PersonNumber"/></Principal>
+					<Dependent Role="ToRole_PersonToPersonnelAssignmentsAssn"><PropertyRef Name="PersonNumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="PersonnelAssignmentToPosition" sap:content-version="1"><End Type="ZHR_PERSONS_SRV.PersonnelAssignments" Multiplicity="1" Role="FromRole_PersonnelAssignmentToPosition"/><End Type="ZHR_PERSONS_SRV.Position" Multiplicity="*" Role="ToRole_PersonnelAssignmentToPosition"/>
+				<ReferentialConstraint>
+					<Principal Role="FromRole_PersonnelAssignmentToPosition"><PropertyRef Name="PersonNumber"/><PropertyRef Name="PersonnelAssignmentNumber"/></Principal>
+					<Dependent Role="ToRole_PersonnelAssignmentToPosition"><PropertyRef Name="PersonNumber"/><PropertyRef Name="PersonnelAssignmentNumber"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<EntityContainer Name="ZHR_PERSONS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="MessagesSet" EntityType="ZHR_PERSONS_SRV.Messages" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PositionSet" EntityType="ZHR_PERSONS_SRV.Position" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PersonnelAssignmentsSet" EntityType="ZHR_PERSONS_SRV.PersonnelAssignments" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/><EntitySet Name="PersonSet" EntityType="ZHR_PERSONS_SRV.Person" sap:creatable="false" sap:updatable="false" sap:deletable="false"
+				sap:pageable="false" sap:content-version="1"/>
+				<AssociationSet Name="PersonnelAssignmentToPositionSet" Association="ZHR_PERSONS_SRV.PersonnelAssignmentToPosition" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="PersonnelAssignmentsSet" Role="FromRole_PersonnelAssignmentToPosition"/><End EntitySet="PositionSet" Role="ToRole_PersonnelAssignmentToPosition"/></AssociationSet>
+				<AssociationSet Name="PersonToPersonnelAssignmentsAssnSet" Association="ZHR_PERSONS_SRV.PersonToPersonnelAssignmentsAssn"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="PersonSet" Role="FromRole_PersonToPersonnelAssignmentsAssn"/><End EntitySet="PersonnelAssignmentsSet" Role="ToRole_PersonToPersonnelAssignmentsAssn"/></AssociationSet>
+				<FunctionImport Name="DefaultPersonDetails" ReturnType="Collection(ZHR_PERSONS_SRV.PersonnelAssignments)"
+					EntitySet="PersonnelAssignmentsSet" m:HttpMethod="GET" sap:action-for="ZHR_PERSONS_SRV.PersonnelAssignments"><Parameter Name="UserId" Type="Edm.String" Mode="In"/><Parameter Name="PeriodStart" Type="Edm.DateTimeOffset" Mode="In" Precision="0"/><Parameter Name="MovementType" Type="Edm.String" Mode="In"/><Parameter Name="Role" Type="Edm.String" Mode="In"/></FunctionImport>
+				<FunctionImport Name="GetPerson" ReturnType="Collection(ZHR_PERSONS_SRV.Messages)" EntitySet="MessagesSet" m:HttpMethod="GET"
+					sap:action-for="ZHR_PERSONS_SRV.Person"><Parameter Name="PersonId" Type="Edm.Int32" Mode="In"/><Parameter Name="PeriodStart" Type="Edm.DateTimeOffset" Mode="In" Precision="0"/></FunctionImport>
+				<FunctionImport Name="ValidatePerson" ReturnType="Collection(ZHR_PERSONS_SRV.Messages)" EntitySet="MessagesSet" m:HttpMethod="GET"
+					sap:action-for="ZHR_PERSONS_SRV.Person"><Parameter Name="PeriodStart" Type="Edm.DateTimeOffset" Mode="In" Precision="0"/><Parameter Name="PersonId" Type="Edm.Int32" Mode="In"/><Parameter Name="Appname" Type="Edm.String" Mode="In"/><Parameter Name="Role" Type="Edm.String" Mode="In"/></FunctionImport>
+			</EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHR_PERSONS_EXTN_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHR_PERSONS_EXTN_SRV/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>
