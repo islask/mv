@@ -18,15 +18,13 @@ sap.ui.define([
 		createAppStateModel: function () {
 			var oModel = new JSONModel({
 				fields: {
-					Persona: "SELF",
-					FormCode: "LVAPP",
-					FormName: "Leave Application"
+					Persona: "MINE",
+					FormCode: "MVCLAIM",
+					FormName: "Mileage Claim Form"
 				},
 				ExpressionBindings: {
 					selfUpload: false,
 					onbehalfUpload: false,
-					teamUpload: false,
-					external: false,
 					showProcessflow: false
 				}
 			});

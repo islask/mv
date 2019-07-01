@@ -5,16 +5,21 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("qldh.MV_Claim.controller.ClaimInit", {
-
+		_oAppStateModel: null,
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf qldh.MV_Claim.view.ClaimInit
 		 */
 		onInit: function () {
-			this.getOwnerComponent().setModel(JSONModel, "passingParameters");
+			var oJSONModel = new JSONModel({
+				GUID: '123456',
+				Role: 'abc',
+				FormType: 'ZHR_SEARCH_FORMS',
+				FormVersion: '0000'
+			});
+			this.getOwnerComponent().setModel(oJSONModel, "passingParameters");
 			this._oAppStateModel = this.getOwnerComponent().getModel("AppState");
-			var oModel = new sap.ui.model.json.JSONModel();
 			//Set the default date to today
 			this.byId("claimStartDtPicker").setDateValue(new Date());
 			//Global model to be used for person lookup
@@ -24,6 +29,11 @@ sap.ui.define([
 
 		},
 
+		onPersonaDataReceived: function (oEvent) {
+			//When persona dropdown is receieved, if only one entry exists, i.e. ESS scenario,
+			//trigger call to get the Person data and skip first screen if only 1 PAN exists.
+			var oParameters = oEvent.getParameters();
+		},
 		_onPersonaSelected: function (oEvent) {
 			var sSelectKey = oEvent.getSource().getSelectedKey();
 			this.personaSelected = sSelectKey;
@@ -34,6 +44,7 @@ sap.ui.define([
 			//sap.ui.core.UIComponent.getRouterFor(this).navTo("MVClaimForm");
 			this.getOwnerComponent().getRouter().navTo("MVClaimForm");
 		},
+
 		/** 
 		 * Opens the Person lookup dialog
 		 * @returns {void}
@@ -41,11 +52,12 @@ sap.ui.define([
 		onPersonNumberValueHelp: function () {
 			var oView = this.getView();
 			var oDialog = oView.byId("dlgPersonLookup");
+
 			var parameters = {
 				InitiatorRole: this.byId("selCreateFor").getSelectedKey(),
 				Appname: "MVCLAIM"
 			};
-			this.getModel("passingParameters").setProperty("/", parameters);
+			oView.getModel("passingParameters").setProperty("/", parameters);
 			// create dialog lazily
 			if (!oDialog) {
 				// create dialog via fragment factory
@@ -59,69 +71,7 @@ sap.ui.define([
 		 * @param {sap.ui.core.Event} oEvent event object from the ui element
 		 * @returns {void}
 		 */
-		onPersonIdChange: function (oEvent) {
-			var oModelPerson = this.getOwnerComponent().getModel("Persons"),
-				oModel = this.getOwnerComponent().getModel(),
-				oControl = oEvent.getSource(),
-				that = this,
-				sPeriodStartDate = new Date(),
-				sPersonId = oEvent.getParameter("newValue");
-
-			if (sPersonId.length > 0 && sPersonId.length < 9) {
-				oControl.setBusy(true);
-
-				var oParams = {
-					"PersonId": sPersonId,
-					"Role": this.byId("slRole").getSelectedKey(),
-					"Appname": "ZHR_SUB_FM"
-				};
-				oControl.setBusy(true);
-				this.getView().setBusy(true);
-				oModelPerson.callFunction("/ValidatePerson", {
-					method: "GET",
-					urlParameters: oParams,
-					/**
-					 * Success callback for the get person
-					 * @param {Object} oData Odate response
-					 * @param {Object} response The response
-					 * @returns {void}
-					 */
-					success: function (oData) {
-						oControl.setBusy(false);
-						that.getView().setBusy(false);
-						if (oData.results.length > 0) {
-							if (oData.results[0].Type === 'E') {
-								oControl.setValueState("Error");
-								oControl.setValueStateText(oData.results[0].Message);
-								that.oAppStateModel.setProperty("/isValid/PersonidExt", false);
-							}
-						} else {
-							oControl.setValueState("None");
-							//		that.oAppStateModel.setProperty("/isValid/PersonidExt", true);
-							that.readPersonBackend(sPersonId, oModel);
-						}
-					},
-					/**
-					 * Callback for the get person return
-					 * @param {Object} oError Error object
-					 * @returns {void}
-					 */
-					error: function () {
-						var oMessageModel = sap.ui.getCore().getMessageManager().getMessageModel();
-						for (var i = 0; i < oMessageModel.getProperty("/").length; i++) {
-							if (oMessageModel.getProperty("/")[i].code === "ZQH/901") {
-								oControl.setValueState("Error");
-								oControl.setValueStateText(oMessageModel.getProperty("/")[i].message);
-								oControl.setBusy(false);
-								that.getView().setBusy(false);
-								that.oAppStateModel.setProperty("/isValid/PersonidExt", false);
-								break;
-							}
-						}
-					}
-				});
-			}
-		}
+		onPersonIdChange: function (oEvent) {},
 
 		/**
 		 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered
@@ -145,9 +95,9 @@ sap.ui.define([
 		 * Called when the Controller is destroyed. Use this one to free resources and finalize activities.
 		 * @memberOf qldh.MV_Claim.view.ClaimInit
 		 */
-		//	onExit: function() {
-		//
-		//	}
+		onExit: function () {
+			this.destroy();
+		}
 
 	});
 

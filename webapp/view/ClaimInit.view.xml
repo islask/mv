@@ -9,7 +9,8 @@
 				singleContainerFullSize="false">
 				<form:content columnLayout="1">
 					<Label text="{i18n>CreateFor}" required="true" labelFor="selCreateFor"/>
-					<Select id="selCreateFor" forceSelection="false" enabled="true" items="{ path: '/PersonaSet'}" change="_onPersonaSelected">
+					<Select id="selCreateFor" forceSelection="false" enabled="true"
+						items="{ path: '/PersonaSet', events: { dataReceived: '.onPersonaDataReceived'}}" change="_onPersonaSelected">
 						<core:ListItem key="{Value}" text="{Name}"/>
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
