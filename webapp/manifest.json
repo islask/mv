@@ -55,15 +55,30 @@
 			"tablet": true,
 			"phone": true
 		},
-		"supportedThemes": ["sap_hcb", "sap_belize"]
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
 	"sap.ui5": {
 		"rootView": {
 			"viewName": "qldh.MV_Claim.view.App",
 			"type": "XML"
 		},
+		"resourceRoots": {
+			"qldh.personlookup": "../sap/bc/ui5_ui5/sap/zhr_pers_lookup",
+			"qldh.personlookup.ZHR_PERLKUP_SUB": "../sap/bc/ui5_ui5/sap/ZHR_PERLKUP_SUB"
+		},
 		"dependencies": {
 			"minUI5Version": "1.30.0",
+			"components": {
+				"qldh.personlookup": {
+					"lazy": true
+				},
+				"qldh.personlookup.ZHR_PERLKUP_SUB": {
+					"lazy": true
+				}
+			},
 			"libs": {
 				"sap.m": {},
 				"sap.ui.comp": {
@@ -94,8 +109,8 @@
 				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
 					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneWay",
-					"defaultCountMode": "Request"
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline"
 				},
 				"dataSource": "ZHR_MV_ALLOW_CLAIM",
 				"preload": true
@@ -104,7 +119,7 @@
 				"type": "sap.ui.model.odata.v2.ODataModel",
 				"settings": {
 					"defaultOperationMode": "Server",
-					"defaultBindingMode": "OneWay",
+					"defaultBindingMode": "TwoWay",
 					"defaultCountMode": "Request"
 				},
 				"dataSource": "ZHR_ATTACHMENTS_SRV",
@@ -115,16 +130,18 @@
 				"settings": {
 					"defaultOperationMode": "Server",
 					"defaultBindingMode": "OneWay",
-					"defaultCountMode": "Request"
+					"defaultCountMode": "Inline"
 				},
 				"dataSource": "ZHR_PERSONS_EXTN_SRV",
 				"preload": true
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -136,17 +153,24 @@
 				"controlId": "app",
 				"clearControlAggregation": false
 			},
-			"routes": [{
-				"name": "ClaimInit",
-				"pattern": "",
-				"target": ["ClaimInit"]
-			}, {
-				"name": "MVClaimForm",
-				"pattern": "MVClaimForm",
-				"titleTarget": "",
-				"greedy": false,
-				"target": ["MVClaimForm"]
-			}],
+			"routes": [
+				{
+					"name": "ClaimInit",
+					"pattern": "",
+					"target": [
+						"ClaimInit"
+					]
+				},
+				{
+					"name": "MVClaimForm",
+					"pattern": "MVClaimForm",
+					"titleTarget": "",
+					"greedy": false,
+					"target": [
+						"MVClaimForm"
+					]
+				}
+			],
 			"targets": {
 				"MVClaimForm": {
 					"viewId": "MVClaimForm",
@@ -162,5 +186,9 @@
 				}
 			}
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zhr_mv_claim/webapp",
+		"_version": "1.1.0"
 	}
 }

@@ -2,48 +2,42 @@
 	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartform="sap.ui.comp.smartform"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml"
 	controllerName="qldh.MV_Claim.controller.ClaimInit">
-	<Page>
+	<Page title="{i18n>title}">
 		<VBox>
 			<form:SimpleForm id="simpleFormEmployee" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4"
 				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
-				singleContainerFullSize="false" title="{i18n>initTitle}">
+				singleContainerFullSize="false">
 				<form:content columnLayout="1">
 					<Label text="{i18n>CreateFor}" required="true" labelFor="selCreateFor"/>
-					<Select id="selCreateFor" selectedKey="SELF" forceSelection="false" enabled="true" items="{ path: '/personas'}" change="_onPersonaSelected">
-						<core:ListItem key="{RoleID}" text="{RoleText}"/>
+					<Select id="selCreateFor" forceSelection="false" enabled="true" items="{ path: '/PersonaSet'}" change="_onPersonaSelected">
+						<core:ListItem key="{Value}" text="{Name}"/>
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</Select>
 					<Label id="lblClaimDt" text="{i18n>ClaimDate}" required="true"/>
 					<DatePicker id="claimStartDtPicker" change="onDateChange" editable="{viewModel>/editable}" placeholder="dd.mm.yyyy"
-						displayFormat="dd.MM.yyyy" dateValue="{StartDate}" visible="{= ${AppState>/fields/Role} !== '' ? true : false}" width="100%"
-						tooltip="{i18n>DateTooltip}">
+						displayFormat="dd.MM.yyyy" visible="{= ${AppState>/fields/Persona} !== '' ? true : false}" width="100%" tooltip="{i18n>DateTooltip}">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</DatePicker>
-					<Label text="{i18n>PID}" required="{= ${SpecialIdentifier} !== '001'}" labelFor="SelfPID"/>
-					<Input id="SelfPID" value="{path: 'PID', type : 'sap.ui.model.type.Integer', constraints : { minLength: 1, maxLength: 8 } }"
-						editable="{= ${viewModel>/editable} &amp;&amp; ${AppState>/fields/Role} !== '1'}"
-						visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; (${SpecialIdentifier} !== '001' || ${AppState>/ExpressionBindings/showProcessor}) &amp;&amp; ${SpecialIdentifier} !== '003'}"
-						change="onPersonIdChange" type="Number" showValueHelp="true" valueHelpRequest="onPersonNumberValueHelp">
+					<Label text="{i18n>PID}" labelFor="SelfPID"/>
+					<Input id="SelfPID" value="{path: 'PID', type : 'sap.ui.model.type.Integer', constraints : { minLength: 1, maxLength: 8 } }" visible="true"
+						change="onPersonIdChange" type="Number" description="{Ename}" showValueHelp="true" valueHelpRequest="onPersonNumberValueHelp">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</Input>
-					<Text
-						visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; (${SpecialIdentifier} !== '001' || ${AppState>/ExpressionBindings/showProcessor}) &amp;&amp; ${SpecialIdentifier} !== '003'}"
-						text="{Ename}">
+					<!--		<Text visible="true" text="{Ename}">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M5 S12"/>
 						</layoutData>
-					</Text>
-					<Label id="LBLPersonAssignment" text="{i18n>PAN}" required="{= ${SpecialIdentifier} !== '001'}" labelFor="SlPersonAssignment"/>
+					</Text>-->
+					<Label id="LBLPersonAssignment" text="{i18n>PAN}" required="true" labelFor="SlPersonAssignment"/>
 					<Select id="SlPersonAssignment" selectedKey="{PAN}" enabled="{viewModel>/editable}"
 						items="{path: 'Persons>/PersonnelAssignmentsSet', parameters:{expand :'PositionNavn'}}" change="onPersonalAssignmentChange"
-						forceSelection="false"
-						visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; !!${PID} &amp;&amp; (${SpecialIdentifier} !== '001' || ${AppState>/ExpressionBindings/showProcessor}) &amp;&amp; ${SpecialIdentifier} !== '003'}">
+						forceSelection="false" visible="true">
 						<items>
 							<core:ListItem text="{Persons>PersonnelAssignmentNumber}" key="{Persons>PersonnelAssignmentNumber}"/>
 						</items>
@@ -52,11 +46,10 @@
 						</layoutData>
 					</Select>
 					<Label text="{i18n>POS}" required="true" labelFor="claimForPositionNumber"/>
-					<Input id="claimForPositionNumber" editable="{viewModel>/editable}"
+					<Input id="claimForPositionNumber" editable="false"
 						value="{path : 'Position', type : 'sap.ui.model.type.Integer', constraints : { minLength: 1, maxLength: 8 } }" type="Number"
-						placeholder="{i18n>PosPlaceholder}" description="{PositionTitle}" change="onPositionNumberChange" showValueHelp="true"
-						valueHelpRequest="onPositionNumberValueHelp"
-						visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; (${SpecialIdentifier} === '001' || ${SpecialIdentifier} === '003')}">
+						description="{PositionTitle}" change="onPositionNumberChange" showValueHelp="true" valueHelpRequest="onPositionNumberValueHelp"
+						visible="true">
 						<layoutData>
 							<layout:GridData span="XL6 L6 M6 S12"/>
 						</layoutData>
@@ -72,22 +65,18 @@
 						<layout:GridData span="XL3 L3 M3 S12"/>
 					</layoutData>
 				</Select>-->
-					<Text
-						visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; (${SpecialIdentifier} !== '001' &amp;&amp; ${SpecialIdentifier} !== '003')}"
-						text="{PositionTitle}">
+					<Text visible="true" text="{PositionTitle}">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M5 S12"/>
 						</layoutData>
 					</Text>
 					<Label text="{i18n>OrgUnit}" labelFor="claimForOrgUnitName" id="lblOrgUnit"/>
-					<Input id="claimForOrgUnitName" value="{OrgUnit}" editable="false" showValueHelp="false" type="Number"
-						visible="{= ${AppState>/fields/Role} !== '' &amp;&amp; !!${StartDate} &amp;&amp; ${AppState>/fields/Role} !== '4' }">
+					<Input id="claimForOrgUnitName" value="{OrgUnit}" editable="false" showValueHelp="false" type="Number" visible="true">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</Input>
-					<Text visible="{= ${AppState>/fields/Role} !== '' &amp;&amp; !!${StartDate} &amp;&amp; ${AppState>/fields/Role} !== '4' }"
-						text="{OrgUnitTitle}">
+					<Text visible="true" text="{OrgUnitTitle}">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>

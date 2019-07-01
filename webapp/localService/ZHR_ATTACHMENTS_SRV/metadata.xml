@@ -1,7 +1,8 @@
-<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
-	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
 	<edmx:DataServices m:DataServiceVersion="2.0">
-		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZHR_ATTACHMENTS_SRV" xml:lang="en" sap:schema-version="1">
+		<Schema Namespace="ZHR_ATTACHMENTS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
 			<EntityType Name="Attachments" m:HasStream="true" sap:content-version="1">
 				<Key><PropertyRef Name="AttachmentGuid"/><PropertyRef Name="Guid"/><PropertyRef Name="AttachmentStepGuid"/><PropertyRef Name="AttachmentType"/></Key><Property Name="AttachmentGuid" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="GUID" sap:creatable="false"
 					sap:updatable="false" sap:sortable="false"/><Property Name="FormType" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Form Scenario"
@@ -29,6 +30,10 @@
 					sap:updatable="false" sap:sortable="false"/></EntityType>
 			<EntityContainer Name="ZHR_ATTACHMENTS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="AttachmentsSet" EntityType="ZHR_ATTACHMENTS_SRV.Attachments" sap:creatable="false" sap:updatable="false"
 				sap:deletable="false" sap:pageable="false" sap:content-version="1"/><EntitySet Name="DocumentTypesSet" EntityType="ZHR_ATTACHMENTS_SRV.DocumentTypes" sap:creatable="false" sap:updatable="false"
-				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZHR_ATTACHMENTS_SRV/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZHR_ATTACHMENTS_SRV/$metadata"/></Schema>
+				sap:deletable="false" sap:pageable="false" sap:content-version="1"/></EntityContainer><atom:link rel="self"
+				href="https://webidecp-c16839e8f.dispatcher.ap1.hana.ondemand.com/destinations/HIU_80002369/sap/opu/odata/sap/ZHR_ATTACHMENTS_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/><atom:link rel="latest-version"
+				href="https://webidecp-c16839e8f.dispatcher.ap1.hana.ondemand.com/destinations/HIU_80002369/sap/opu/odata/sap/ZHR_ATTACHMENTS_SRV/$metadata"
+				xmlns:atom="http://www.w3.org/2005/Atom"/></Schema>
 	</edmx:DataServices>
 </edmx:Edmx>

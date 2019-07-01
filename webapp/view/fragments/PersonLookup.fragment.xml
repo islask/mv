@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m">
+	<Dialog id="dlgPersonLookup" contentHeight="100%" contentWidth="100%" title="{i18n>PersonLookupDialog}">
+		<content>
+			<core:ComponentContainer width="100%" name="qldh.personlookup.ZHR_PERLKUP_SUB" component="qldh.personlookup.ZHR_PERLKUP_SUB"
+				propagateModel="true" lifecycle="Container"></core:ComponentContainer>
+		</content>
+		<buttons>
+			<Button text="{i18n>Select}" press="onPersonSelect" type="Emphasized" enabled="true"/>
+			<Button text="{i18n>Cancel}" press="onPersonCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

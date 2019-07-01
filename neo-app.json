@@ -1,35 +1,49 @@
 {
-  "welcomeFile": "/webapp/index.html",
-  "routes": [
-    {
-      "path": "/resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/resources",
-        "version": "1.52.9"
-      },
-      "description": "SAPUI5 Resources"
-    },
-    {
-      "path": "/test-resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/test-resources",
-        "version": "1.52.9"
-      },
-      "description": "SAPUI5 Test Resources"
-    },
-    {
-      "path": "/sap/opu/odata",
-      "target": {
-        "type": "destination",
-        "name": "HIU_80002369",
-        "entryPath": "/sap/opu/odata"
-      },
-      "description": "HIU Connection"
-    }
-  ],
-  "sendWelcomeFileRedirect": true
+	"welcomeFile": "/webapp/index.html",
+	"routes": [{
+			"path": "/resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/resources",
+				"version": "1.52.9"
+			},
+			"description": "SAPUI5 Resources"
+		}, {
+			"path": "/test-resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/test-resources",
+				"version": "1.52.9"
+			},
+			"description": "SAPUI5 Test Resources"
+		}, {
+			"path": "/sap/opu/odata",
+			"target": {
+				"type": "destination",
+				"name": "HIU_80002369",
+				"entryPath": "/sap/opu/odata"
+			},
+			"description": "HIU Connection"
+		}, {
+			"path": "/sap/bc/ui5_ui5/sap/ZHR_PERLKUP_SUB",
+			"target": {
+				"type": "application",
+				"name": "zhrperlkupsub",
+				"entryPath": "/"
+			},
+			"description": "Person Lookup app"
+		}, {
+			"path": "/sap/bc/ui5_ui5/sap/ZHR_PERS_LOOKUP",
+			"target": {
+				"type": "application",
+				"preferLocal": true,
+				"name": "personlookup"
+			},
+			"description": "Original Application"
+		}
+
+	],
+	"sendWelcomeFileRedirect": true
 }

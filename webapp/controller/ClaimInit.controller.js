@@ -13,10 +13,11 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			var oModel = new sap.ui.model.json.JSONModel();
-
-			oModel.loadData("./data/ClaimFor.json", '', false); //Test code remove
-			this.getView().setModel(oModel, "PersonaSet");
-			this.getView().byId("selCreateFor").setModel(oModel);
+			//Set the default date to today
+			this.byId("claimStartDtPicker").setDateValue(new Date());
+			//	oModel.loadData("./data/ClaimFor.json", '', false); //Test code remove
+			//	this.getView().setModel(oModel, "PersonaSet");
+			//	this.getView().byId("selCreateFor").setModel(oModel);
 		},
 
 		_onPersonaSelected: function (oEvent) {
@@ -24,13 +25,95 @@ sap.ui.define([
 			this.personaSelected = sSelectKey;
 			this.getOwnerComponent().getModel("AppState").setProperty("Persona", sSelectKey);
 
-			//Clear the bindings if the user changes the role.
-			var sPath = this.getView().getBindingContext().getPath(),
-				oModel = this.getView().getModel();
 		},
 		handleStartPress: function (oEvent) {
 			//sap.ui.core.UIComponent.getRouterFor(this).navTo("MVClaimForm");
 			this.getOwnerComponent().getRouter().navTo("MVClaimForm");
+		},
+		/** 
+		 * Opens the Person lookup dialog
+		 * @returns {void}
+		 */
+		onPersonNumberValueHelp: function () {
+			var oView = this.getView();
+			var oDialog = oView.byId("dlgPersonLookup");
+			// create dialog lazily
+			if (!oDialog) {
+				// create dialog via fragment factory
+				oDialog = sap.ui.xmlfragment(oView.getId(), "qldh.MV_Claim.view.fragments.PersonLookup", this);
+
+				oView.addDependent(oDialog);
+			}
+			oDialog.open();
+
+		},
+		/** 
+		 * Event handler for the person id input field
+		 * @param {sap.ui.core.Event} oEvent event object from the ui element
+		 * @returns {void}
+		 */
+		onPersonIdChange: function (oEvent) {
+			var oModelPerson = this.getOwnerComponent().getModel("Persons"),
+				oModel = this.getOwnerComponent().getModel(),
+				oControl = oEvent.getSource(),
+				that = this,
+				sPeriodStartDate = new Date(),
+				sPersonId = oEvent.getParameter("newValue");
+
+			if (sPersonId.length > 0 && sPersonId.length < 9) {
+				oControl.setBusy(true);
+
+				var oParams = {
+					"PersonId": sPersonId,
+					"Role": this.byId("slRole").getSelectedKey(),
+					"Appname": "ZHR_SUB_FM"
+				};
+				oControl.setBusy(true);
+				this.getView().setBusy(true);
+				oModelPerson.callFunction("/ValidatePerson", {
+					method: "GET",
+					urlParameters: oParams,
+					/**
+					 * Success callback for the get person
+					 * @param {Object} oData Odate response
+					 * @param {Object} response The response
+					 * @returns {void}
+					 */
+					success: function (oData) {
+						oControl.setBusy(false);
+						that.getView().setBusy(false);
+						if (oData.results.length > 0) {
+							if (oData.results[0].Type === 'E') {
+								oControl.setValueState("Error");
+								oControl.setValueStateText(oData.results[0].Message);
+								that.oAppStateModel.setProperty("/isValid/PersonidExt", false);
+							}
+						} else {
+							oControl.setValueState("None");
+							//		that.oAppStateModel.setProperty("/isValid/PersonidExt", true);
+							that.readPersonBackend(sPersonId, oModel);
+						}
+					},
+					/**
+					 * Callback for the get person return
+					 * @param {Object} oError Error object
+					 * @returns {void}
+					 */
+					error: function () {
+						var oMessageModel = sap.ui.getCore().getMessageManager().getMessageModel();
+						for (var i = 0; i < oMessageModel.getProperty("/").length; i++) {
+							if (oMessageModel.getProperty("/")[i].code === "ZQH/901") {
+								oControl.setValueState("Error");
+								oControl.setValueStateText(oMessageModel.getProperty("/")[i].message);
+								oControl.setBusy(false);
+								that.getView().setBusy(false);
+								that.oAppStateModel.setProperty("/isValid/PersonidExt", false);
+								break;
+							}
+						}
+					}
+				});
+			}
 		}
 
 		/**
