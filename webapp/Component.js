@@ -6,7 +6,7 @@ sap.ui.define([
 	],
 	function (UIComponent, Device, models) {
 		"use strict";
-		jQuery.sap.registerModulePath("qldh.personlookup.ZHR_PERLKUP_SUB", "../sap/bc/ui5_ui5/sap/ZHR_PERLKUP_SUB");
+		//	jQuery.sap.registerModulePath("qldh.personlookup", "/sap/bc/ui5_ui5/sap/zhr_pers_lookup");
 		return UIComponent.extend("qldh.MV_Claim.Component", {
 
 			metadata: {

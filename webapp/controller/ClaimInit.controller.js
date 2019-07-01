@@ -12,12 +12,16 @@ sap.ui.define([
 		 * @memberOf qldh.MV_Claim.view.ClaimInit
 		 */
 		onInit: function () {
+			this.getOwnerComponent().setModel(JSONModel, "passingParameters");
+			this._oAppStateModel = this.getOwnerComponent().getModel("AppState");
 			var oModel = new sap.ui.model.json.JSONModel();
 			//Set the default date to today
 			this.byId("claimStartDtPicker").setDateValue(new Date());
-			//	oModel.loadData("./data/ClaimFor.json", '', false); //Test code remove
-			//	this.getView().setModel(oModel, "PersonaSet");
-			//	this.getView().byId("selCreateFor").setModel(oModel);
+			//Global model to be used for person lookup
+			var personLookupModel = new JSONModel();
+			this.getOwnerComponent().setModel(personLookupModel, "personLookupModel");
+			this.getOwnerComponent().getModel("personLookupModel").setProperty("/personId", "");
+
 		},
 
 		_onPersonaSelected: function (oEvent) {
@@ -37,15 +41,18 @@ sap.ui.define([
 		onPersonNumberValueHelp: function () {
 			var oView = this.getView();
 			var oDialog = oView.byId("dlgPersonLookup");
+			var parameters = {
+				InitiatorRole: this.byId("selCreateFor").getSelectedKey(),
+				Appname: "MVCLAIM"
+			};
+			this.getModel("passingParameters").setProperty("/", parameters);
 			// create dialog lazily
 			if (!oDialog) {
 				// create dialog via fragment factory
 				oDialog = sap.ui.xmlfragment(oView.getId(), "qldh.MV_Claim.view.fragments.PersonLookup", this);
-
 				oView.addDependent(oDialog);
 			}
 			oDialog.open();
-
 		},
 		/** 
 		 * Event handler for the person id input field
