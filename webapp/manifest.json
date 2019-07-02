@@ -80,6 +80,9 @@
 				}
 			},
 			"libs": {
+				"sap.f": {
+					"minVersion": ""
+				},
 				"sap.m": {},
 				"sap.ui.comp": {
 					"minVersion": ""
@@ -183,6 +186,10 @@
 					"viewName": "ClaimInit",
 					"viewLeve": 1,
 					"viewLevel": 1
+				},
+				"ClaimForm": {
+					"viewType": "XML",
+					"viewName": "ClaimForm"
 				}
 			}
 		}

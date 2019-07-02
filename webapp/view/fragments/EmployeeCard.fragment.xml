@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="qldh.MV_Claim.controller.EmployeeCard" xmlns="sap.m">
+	<QuickView placement="Auto" width="320px">
+		<pages>
+			<QuickViewPage title="{Ename}" titleUrl="" description="{i18n>PID}" icon="sap-icon://business-card">
+				<groups>
+					<QuickViewGroup visible="true" heading="">
+						<elements>
+							<QuickViewGroupElement label="{i18n>PAN}" value="{PAN}" type="text" target="_blank" visible="true"/>
+							<QuickViewGroupElement label="{i18n>Contact}" value="{TelNum}" type="phone" target="_blank" visible="true"/>
+							<QuickViewGroupElement label="{i18n>POS}" value="{PositionTitle}" type="text" target="_blank" visible="true"/>
+							<QuickViewGroupElement label="{i18n>OrgUnit}" value="{OrgUnitTitle}" type="text" target="_blank" visible="true"/>
+						</elements>
+					</QuickViewGroup>
+				</groups>
+			</QuickViewPage>
+		</pages>
+	</QuickView>
+</core:FragmentDefinition>
