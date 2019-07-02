@@ -6,26 +6,24 @@
 				editable="true">
 				<form:content>
 					<Label id="lblMileageDt" text="{i18n>lblDate}" labelFor="inputMileageDt"/>
-					<DatePicker id="inputMileageDt" displayFormat="dd.MM.yyyy" valueFormat="dd.MM.yyyy" required="true" ariaLabelledBy="lblMileageDt"
-						width="100%"/>
-					<Label text="{i18n>lblTown}" labelFor="inputTown"/>
-					<Input id="inputTown" type="Text" required="true"/>
-					<Label text="{i18n>lblTotalKMx}" labelFor="inputTotalKMx"/>
-					<Input id="inputTotalKMx" type="Number" required="true" liveChange="_onUpdateKM"
-						value="{ type : 'sap.ui.model.type.Integer', constraints : { minimun: 1, maximum: 99999 } }"/>
-					<Label text="{i18n>lblRetKMy}" labelFor="inputRetKMy"/>
-					<Input id="inputRetKMy" type="Number" required="true" valueStateText="Invalid entry" liveChange="_onUpdateKM"
-						value="{ type : 'sap.ui.model.type.Integer', constraints : { minimun: 1, maximum: 99999 } }"/>
-					<Label text=" {i18n>lblTotKMxy}" labelFor="inputTotKMxy"/>
-					<Input id="inputTotKMxy" text="" maxLines="1" editable="false"/>
+					<DatePicker id="inputMileageDt" dateValue="{LocalMileage>/MilDate}" displayFormat="dd.MM.yyyy" valueFormat="dd.MM.yyyy" required="true"
+						ariaLabelledBy="lblMileageDt" width="100%"/>
+					<Label id="lblTown" text="{i18n>lblTown}" labelFor="inputTown"/>
+					<Input id="inputTown" type="Text" value="{LocalMileage>/Town}" required="true" ariaLabelledBy="lblTown"/>
+					<Label id="lblTotalKMx" text="{i18n>lblTotalKMx}" labelFor="inputTotalKMx"/>
+					<Input id="inputTotalKMx" type="Number" required="true" liveChange="_onUpdateKM" ariaLabelledBy="lblTotalKMx"
+						value="{ path:'LocalMileage>/TotKMx', type : 'sap.ui.model.type.Integer', constraints : { minimun: 1, maximum: 99999 } }"/>
+					<Label id="lblRetKMy" text="{i18n>lblRetKMy}" labelFor="inputRetKMy"/>
+					<Input id="inputRetKMy" type="Number" required="true" valueStateText="Invalid entry" liveChange="_onUpdateKM" ariaLabelledBy="lblRetKMy"
+						value="{path:'LocalMileage>/RetKMy', type : 'sap.ui.model.type.Integer', constraints : { minimun: 1, maximum: 99999 } }"/>
+					<Label id="lblTotKMxy" text="{i18n>lblTotKMxy}" labelFor="inputTotKMxy"/>
+					<Input id="inputTotKMxy" value="{LocalMileage>/TotKMxy}" maxLines="1" editable="false" ariaLabelledBy="lblTotKMxy"/>
 				</form:content>
 			</form:SimpleForm>
 		</content>
 		<buttons>
-			<Button text="Accept" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
-				press="_onButtonPress1"/>
-			<Button text="Cancel" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
-				press="_onButtonPress"/>
+			<Button text="Accept" type="Accept" iconFirst="true" width="auto" press="_onBtnAccept"/>
+			<Button text="Cancel" type="Reject" iconFirst="true" width="auto" press="_onBtnCancel"/>
 		</buttons>
 	</Dialog>
 </core:FragmentDefinition>

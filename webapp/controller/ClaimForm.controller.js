@@ -1,6 +1,7 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
+	"sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, JSONModel) {
 	"use strict";
 
 	return Controller.extend("qldh.MV_Claim.controller.ClaimForm", {
@@ -11,7 +12,17 @@ sap.ui.define([
 		 * @memberOf qldh.MV_Claim.view.ClaimForm
 		 */
 		onInit: function () {
-
+			var oJSONModel = new JSONModel({
+				MileageSet: [],
+				busy: true,
+				busyIndicatorDelay: 0,
+				enable: true
+			});
+			this.oMileageTable = this.getView().byId("tblMileage");
+			this.getOwnerComponent().setModel(oJSONModel, "LocalMileage");
+			this.oLocalMileageModel = this.getOwnerComponent().getModel("LocalMileage");
+			this.oGlobalAppModel = this.getOwnerComponent().getModel("AppState");
+			this.oMileageModel = this.getOwnerComponent().getModel("Mileage");
 		},
 		_onBtnAdd: function (oEvent) {
 			var oView = this.getView();
@@ -20,11 +31,21 @@ sap.ui.define([
 			if (!oDialog) {
 				oDialog = sap.ui.xmlfragment(oView.getId(), "qldh.MV_Claim.view.fragments.MileageRecord", this);
 				oView.addDependent(oDialog);
+				oDialog.setModel(this.oMileageModel, "oMileageModel");
 			}
 			oDialog.open();
 		},
-		_onUpdateKM: function (oEvent) {
-				this.getView().byId("inputTotKMxy").setValue(this.getView().byId("inputTotalKMx").getValue() - this.getView().byId("inputRetKMy").getValue());
+		_onUpdateKM: function () {
+			this.getView().byId("inputTotKMxy").setValue(this.getView().byId("inputTotalKMx").getValue() - this.getView().byId("inputRetKMy").getValue());
+		},
+		_onBtnAccept: function (oEvent) {
+			//Add row to the table
+			var that = this;
+			var oModel = this.getView().getModel("LocalMileage");
+			var oTable = this.getView().byId("tblMileage");
+		},
+		_onBtnCancel: function () {
+				this.byId("dialogMileage").close();
 			}
 			/**
 			 * Similar to onAfterRendering, but this hook is invoked before the controller's View is re-rendered

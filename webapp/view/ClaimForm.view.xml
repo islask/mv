@@ -26,7 +26,7 @@
 			<Label text="{i18n>lblRego}" labelFor="inputRego"/>
 			<Input id="inputRego" type="Text" width="50%" required="true" maxLength="20"/>
 			<core:Title text="{i18n>formTable}"/>
-			<Table id="tblMileage" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true">
+			<Table id="tblMileage" items="{LocalMileage>/MileageSet}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true">
 				<headerToolbar>
 					<Toolbar>
 						<ToolbarSpacer/>
