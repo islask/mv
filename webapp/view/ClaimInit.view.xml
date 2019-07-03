@@ -8,9 +8,9 @@
 				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
 				singleContainerFullSize="false">
 				<form:content columnLayout="1">
-					<Label text="{i18n>CreateFor}" required="true" labelFor="selCreateFor"/>
+					<Label id="lblCreateFor" text="{i18n>CreateFor}" labelFor="selCreateFor"/>
 					<Select id="selCreateFor" forceSelection="false" enabled="true"
-						items="{ path: '/PersonaSet', events: { dataReceived: '.onPersonaDataReceived'}}" change="_onPersonaSelected">
+						items="{ path: '/PersonaSet', events: { dataReceived: '.onPersonaDataReceived'}}" change="_onPersonaSelected" ariaLabelledBy="lblCreateFor">
 						<core:ListItem key="{Value}" text="{Name}"/>
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
@@ -18,25 +18,22 @@
 					</Select>
 					<Label id="lblClaimDt" text="{i18n>ClaimDate}" required="true"/>
 					<DatePicker id="claimStartDtPicker" change="onDateChange" editable="{viewModel>/editable}" placeholder="dd.mm.yyyy"
-						displayFormat="dd.MM.yyyy" visible="{= ${AppState>/fields/Persona} !== '' ? true : false}" width="100%" tooltip="{i18n>DateTooltip}">
+						displayFormat="dd.MM.yyyy" visible="{= ${AppState>/fields/Persona} !== '' ? true : false}" width="100%" ariaLabelledBy="lblClaimDt">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</DatePicker>
 					<Label text="{i18n>PID}" labelFor="SelfPID"/>
-					<Input id="SelfPID" value="{path: 'PID', type : 'sap.ui.model.type.Integer', constraints : { minLength: 1, maxLength: 8 } }" visible="true"
-						change="onPersonIdChange" type="Number" description="{Ename}" showValueHelp="true" valueHelpRequest="onPersonNumberValueHelp">
+					<Input id="SelfPID" required="true" value="{path: 'PID', type : 'sap.ui.model.type.Integer', constraints : { minLength: 1, maxLength: 8 } }"
+						visible="{= !!${AppState>/fields/Persona} &amp;&amp; (!!${AppState>/fields/FormDate}) }" change="onPersonIdChange" type="Number"
+						description="{Ename}" showValueHelp="true" valueHelpRequest="onPersonNumberValueHelp" class="sapUiMediumMarginBottom">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M3 S12"/>
 						</layoutData>
 					</Input>
-					<!--		<Text visible="true" text="{Ename}">
-						<layoutData>
-							<layout:GridData span="XL3 L3 M5 S12"/>
-						</layoutData>
-					</Text>-->
 					<Label id="LBLPersonAssignment" text="{i18n>PAN}" required="true" labelFor="SlPersonAssignment"/>
-					<Select id="SlPersonAssignment" selectedKey="{PAN}" enabled="{viewModel>/editable}"
+					<Select id="SlPersonAssignment" selectedKey="{PAN}"
+						enabled="{= !!${PersonId} &amp;&amp; ${AppState>/fields/FormStatus} === 'DRAFT' ? true : false}"
 						items="{path: 'Persons>/PersonnelAssignmentsSet', parameters:{expand :'PositionNavn'}}" change="onPersonalAssignmentChange"
 						forceSelection="false" visible="true">
 						<items>
@@ -55,17 +52,6 @@
 							<layout:GridData span="XL6 L6 M6 S12"/>
 						</layoutData>
 					</Input>
-					<!--			<Label text="{i18n>POS}" required="true" labelFor="claimForPositionSelect"/>
-				<Select id="claimForPositionSelect" items="{path: 'Persons>PositionNavn'}" showSecondaryValues="true" change="onPositionSelectChange"
-					forceSelection="false" selectedKey="{Position}" enabled="{viewModel>/editable}"
-					visible="{= ( ${AppState>/fields/Role} === '1' || ${AppState>/fields/Role} === '2' ) &amp;&amp; !!${StartDate} &amp;&amp; (${SpecialIdentifier} !== '001' &amp;&amp; ${SpecialIdentifier} !== '003')}">
-					<items>
-						<core:ListItem text="{Persons>PositionNumber}" key="{Persons>PositionNumber}" additionalText="{Persons>PositionName}"/>
-					</items>
-					<layoutData>
-						<layout:GridData span="XL3 L3 M3 S12"/>
-					</layoutData>
-				</Select>-->
 					<Text visible="true" text="{PositionTitle}">
 						<layoutData>
 							<layout:GridData span="XL3 L3 M5 S12"/>

@@ -1,7 +1,10 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qldh.MV_Claim.controller.MVClaimForm" displayBlock="true">
-	<semantic:FullscreenPage>
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="qldh.MV_Claim.controller.MVClaimForm" displayBlock="true" floatingFooter="true">
+	<semantic:FullscreenPage enableScrolling="{device>/system/phone}">
 		<semantic:content>
-			<ObjectPageHeader id="objPgHeader" objectTitle="{i18n>title}" objectImageShape="Circle" objectImageURI="sap-icon://insurance-car" isObjectIconAlwaysVisible="true" objectSubtitle="{i18n>title_alt}" showTitleSelector="true"/>
+			<ObjectPageHeader id="objPgHeader" objectTitle="{i18n>title}" objectImageShape="Circle" objectImageURI="sap-icon://insurance-car"
+				isObjectIconAlwaysVisible="true" objectSubtitle="{i18n>title_alt}" showTitleSelector="true"/>
 			<!--	<m:ObjectHeader intro="{i18n>title}" title="{i18n>title}" id="objectHeaderTitle" fullScreenOptimized="true" responsive="true"
 				titleActive="true" icon="sap-icon://insurance-car"/>-->
 			<m:IconTabBar id="iconTabBar">
@@ -13,13 +16,19 @@
 						</m:content>
 					</m:IconTabFilter>
 					<m:IconTabFilter text="Attachments" icon="sap-icon://attachment" id="attachTab">
-						<core:ComponentContainer id="attachments" class="sapUiLargeMarginTop" width="100%" name="qldh.attachments" component="qldh.attachments" propagateModel="true" lifecycle="Application"/>
+						<core:ComponentContainer id="attachments" class="sapUiLargeMarginTop" width="100%" name="qldh.attachments" component="qldh.attachments"
+							propagateModel="true" lifecycle="Application"/>
 					</m:IconTabFilter>
 					<m:IconTabFilter text="Comments" icon="sap-icon://comment" id="commentsTab"/>
 					<m:IconTabFilter text="Process Flow" icon="sap-icon://employee-approvals" id="pFlowTab">
-						<core:ComponentContainer width="100%" name="qldh.processflow.ZHR_PROCESSFLOW_EM" component="qldh.processflow.ZHR_PROCESSFLOW_EM" propagateModel="true" lifecycle="Application"/></m:IconTabFilter>
+						<core:ComponentContainer width="100%" name="qldh.processflow.ZHR_PROCESSFLOW_EM" component="qldh.processflow.ZHR_PROCESSFLOW_EM"
+							propagateModel="true" lifecycle="Application"/></m:IconTabFilter>
 				</m:items>
 			</m:IconTabBar>
 		</semantic:content>
+		<semantic:customFooterContent>
+			<m:Button id="btnSubmit" text="{i18n>Submit}" press="onSave" type="Emphasized" visible="true"/>
+			<m:Button id="btnCancel" text="{i18n>Cancel}" press="navBack" visible="true"/>
+		</semantic:customFooterContent>
 	</semantic:FullscreenPage>
 </mvc:View>

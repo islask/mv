@@ -67,7 +67,8 @@
 		},
 		"resourceRoots": {
 			"qldh.personlookup": "../sap/bc/ui5_ui5/sap/zhr_pers_lookup",
-			"qldh.personlookup.ZHR_PERLKUP_SUB": "../sap/bc/ui5_ui5/sap/ZHR_PERLKUP_SUB"
+			"qldh.personlookup.ZHR_PERLKUP_SUB": "../sap/bc/ui5_ui5/sap/ZHR_PERLKUP_SUB",
+			"qldh.attachments": "../sap/bc/ui5_ui5/sap/zhr_attachments"
 		},
 		"dependencies": {
 			"minUI5Version": "1.30.0",
@@ -77,6 +78,9 @@
 				},
 				"qldh.personlookup.ZHR_PERLKUP_SUB": {
 					"lazy": true
+				},
+					"qldh.attachments": {
+					"lazy": false
 				}
 			},
 			"libs": {

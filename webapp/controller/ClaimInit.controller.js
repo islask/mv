@@ -21,25 +21,54 @@ sap.ui.define([
 			this.getOwnerComponent().setModel(oJSONModel, "passingParameters");
 			this._oAppStateModel = this.getOwnerComponent().getModel("AppState");
 			//Set the default date to today
-			this.byId("claimStartDtPicker").setDateValue(new Date());
+			//this.byId("claimStartDtPicker").setDateValue(new Date());
 			//Global model to be used for person lookup
 			var personLookupModel = new JSONModel();
 			this.getOwnerComponent().setModel(personLookupModel, "personLookupModel");
 			this.getOwnerComponent().getModel("personLookupModel").setProperty("/personId", "");
 
 		},
+		/**
+		 * Fetches the value from the selected item in the table of the person lookup
+		 * @returns {void}
+		 */
+		onPersonSelect: function () {
+			//this._oLogger.info("inside onPersonSelect");
+			var oPersonLookupModel = this.getOwnerComponent().getModel("personLookupModel"),
+				oData = oPersonLookupModel.getData(),
+				oEvtParams = {
+					onPersonSelect: true
+				};
+			this.getModel().setProperty(this.getView().getBindingContext().getPath() + "/PersonId", parseInt(oData.personId));
+			this.getModel().setProperty(this.getView().getBindingContext().getPath() + "/PersonnelAssignmentNumber", parseInt(oData.pan));
 
+			//	this.getView().byId("EmfInpPersonId").fireChangeEvent(oData.personId, oEvtParams);
+			this.onPersonCancel();
+		},
+		/**
+		 * Closes the Person lookup dialog
+		 * @returns {void}
+		 */
+		onPersonCancel: function () {
+			this.getView().byId("dlgPersonLookup").destroy();
+		},
 		onPersonaDataReceived: function (oEvent) {
 			//When persona dropdown is receieved, if only one entry exists, i.e. ESS scenario,
 			//trigger call to get the Person data and skip first screen if only 1 PAN exists.
 			var oParameters = oEvent.getParameters();
 		},
+		onDateChange: function (oEvent) {
+			var sFormDate = oEvent.getSource().getValue();
+			this.FormDate = sFormDate;
+			this.getOwnerComponent().getModel("AppState").setProperty("/fields/FormDate", sFormDate);
+		},
 		_onPersonaSelected: function (oEvent) {
 			var sSelectKey = oEvent.getSource().getSelectedKey();
 			this.personaSelected = sSelectKey;
-			this.getOwnerComponent().getModel("AppState").setProperty("Persona", sSelectKey);
+			this.getOwnerComponent().getModel("AppState").setProperty("/fields/Persona", sSelectKey);
 
 		},
+
 		handleStartPress: function (oEvent) {
 			//sap.ui.core.UIComponent.getRouterFor(this).navTo("MVClaimForm");
 			this.getOwnerComponent().getRouter().navTo("MVClaimForm");

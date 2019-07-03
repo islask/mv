@@ -1,37 +1,54 @@
-<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
-	controllerName="qldh.MV_Claim.controller.ClaimForm" xmlns:html="http://www.w3.org/1999/xhtml">
-	<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false"
-		emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"
-		editable="true">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form" xmlns:layout="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="qldh.MV_Claim.controller.ClaimForm">
+	<form:SimpleForm layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false" editable="true">
 		<form:content>
-			<core:Title text="{i18n>formBasic}"/>
+			<core:Title text="{i18n>formBasic}" emphasized="true"/>
 			<Label text="{i18n>lblWorkLoc}" labelFor="inputWorkLoc"/>
-			<Input id="inputWorkLoc" type="Text" required="true"/>
+			<Input id="inputWorkLoc" type="Text" required="true">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 			<Label text="{i18n>lblReason}" labelFor="inputReason"/>
-			<Input id="inputReason" type="Text" required="true"/>
+			<Input id="inputReason" type="Text" required="true">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 			<Label text="{i18n>lblReqBy}" labelFor="segBtnReqBy"/>
 			<SegmentedButton id="segBtnReqBy">
 				<items>
-					<SegmentedButtonItem text="{i18n>btnReqByS}"/>
-					<SegmentedButtonItem text="{i18n>btnReqByE}"/>
+					<SegmentedButtonItem text="{i18n>btnReqByS}" key="MGR"/>
+					<SegmentedButtonItem text="{i18n>btnReqByE}" key="EMP"/>
 				</items>
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
 			</SegmentedButton>
-			<Label text="{i18n>lblVehicleType}" labelFor="rbGrpVehicleType"/>
-			<RadioButtonGroup id="rbGrpVehicleType" columns="8" selectedIndex="0" select="_onRadioButtonGroupSelect">
-				<buttons>
-					<RadioButton text="{i18n>rbVehicleCar}" editable="true"/>
-					<RadioButton text="{i18n>rbVehicleMCycle}" editable="true"/>
-				</buttons>
-			</RadioButtonGroup>
+			<Label text="{i18n>lblVehicleType}" labelFor="segBtnVehicleType"/>
+			<SegmentedButton id="segBtnVehicleType" class="sapUiContentPadding">
+				<items>
+					<SegmentedButtonItem text="{i18n>rbVehicleCar}" key="CAR" width="60%"/>
+					<SegmentedButtonItem text="{i18n>rbVehicleMCycle}" key="MCYCLE" width="60%"/>
+				</items>
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</SegmentedButton>
 			<Label text="{i18n>lblRego}" labelFor="inputRego"/>
-			<Input id="inputRego" type="Text" width="50%" required="true" maxLength="20"/>
-			<core:Title text="{i18n>formTable}"/>
-			<Table id="tblMileage" items="{LocalMileage>/MileageSet}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true">
+			<Input id="inputRego" type="Text" width="50%" required="true" maxLength="20">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
+			<core:Title text="{i18n>formTable}" emphasized="true"/>
+			<Table id="tblMileage" items="{LocalMileage>/MileageSet}" mode="SingleSelectMaster" growing="true" growingScrollToLoad="true" noDataText="{i18n>tblNoData}" selectionChange="onSelectRow">
 				<headerToolbar>
 					<Toolbar>
 						<ToolbarSpacer/>
-						<Button text="{i18n>btnTblAdd}" icon="sap-icon://add" press="_onBtnAdd"/>
-						<Button text="{i18n>btnTblRemove}" type="Transparent" icon="sap-icon://delete" press="_onOverflowToolbarButtonPress1"/>
+						<!---->
+						<Button id="btnAdd" text="{= !${device>/system/phone} ? ${i18n>btnTblAdd} : ''}" icon="{= !${device>/system/phone} ? '' : 'sap-icon://add'}" press="onBtnAdd"/>
+						<Button id="btnUpdate" text="{= !${device>/system/phone} ? ${i18n>btnUpdate} : ''}" icon="{= !${device>/system/phone} ? '' : 'sap-icon://edit'}" enabled="false" press="onBtnUpdate"/>
+						<Button id="btnRemove" text="{= !${device>/system/phone} ? ${i18n>btnTblRemove} : ''}" icon="{= !${device>/system/phone} ? '' : 'sap-icon://delete'}" enabled="false" press="onBtnRemove"/>
 					</Toolbar>
 				</headerToolbar>
 				<items>
@@ -45,32 +62,51 @@
 					</ColumnListItem>
 				</items>
 				<columns>
-					<Column id="colDate">
+					<Column id="colDate" hAlign="Begin">
 						<Text text="{i18n>lblDate}"/>
 					</Column>
-					<Column id="colTown">
+					<Column id="colTown" hAlign="Begin">
 						<Text text="{i18n>lblTown}"/>
 					</Column>
-					<Column id="colTotKMx">
+					<Column id="colTotKMx" hAlign="Begin">
 						<Text text="{i18n>lblTotalKMx}"/>
 					</Column>
-					<Column id="colRetKMy">
+					<Column id="colRetKMy" hAlign="Begin">
 						<Text text="{i18n>lblRetKMy}"/>
 					</Column>
-					<Column id="colTotKMxy">
+					<Column id="colTotKMxy" hAlign="Begin">
 						<Text text="{i18n>lblTotKMxy}"/>
 					</Column>
 				</columns>
+				<layoutData>
+					<layout:GridData span="XL10 L10 M10 S12"/>
+				</layoutData>
 			</Table>
-			<core:Title text="{i18n>formCost}"/>
+			<core:Title text="{i18n>formCost}" emphasized="true"/>
 			<Label text="{i18n>formTotKM}" labelFor="inputFormToKM"/>
-			<Input id="inputFormTotKM" value="205" type="Number" enabled="false" visible="true" width="50%"/>
+			<Input id="inputFormTotKM" value="205" type="Number" enabled="false" visible="true">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 			<Label text="{i18n>lblAt}" labelFor="inputRate"/>
-			<Input id="inputRate" value="80" type="Number" enabled="false" description="{i18n>txtRate}"/>
+			<Input id="inputRate" value="80" type="Number" enabled="false" description="{i18n>txtRate}">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 			<Label text="{i18n>lblTotClaim}" labelFor="inputTotClaim"/>
-			<Input id="inputTotClaim" value="164.00" type="Number" description="AUD" valueStateText="Invalid entry" maxLength="0"/>
+			<Input id="inputTotClaim" value="164.00" type="Number" description="AUD" enabled="false">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 			<Label text="{i18n>lblCostCtr}" labelFor="inputCostCentre"/>
-			<Input id="inputCostCentre" value="2690288" type="Text" showValueHelp="true" valueStateText="Invalid entry" maxLength="10"/>
+			<Input id="inputCostCentre" value="2690288" type="Text" showValueHelp="true">
+				<layoutData>
+					<layout:GridData span="XL6 L6 M6 S12"/>
+				</layoutData>
+			</Input>
 		</form:content>
 	</form:SimpleForm>
 </mvc:View>
