@@ -4,7 +4,7 @@ sap.ui.define([
 	"use strict";
 
 	function getFrameUrl(sHash, sUrlParameters) {
-		var sUrl = jQuery.sap.getResourcePath("qldh/MV_Claim/index", ".html");
+		var sUrl = jQuery.sap.getResourcePath("qldh/ZHR_F_MV_CLAIM/index", ".html");
 		sHash = sHash || "";
 		sUrlParameters = sUrlParameters ? "?" + sUrlParameters : "";
 
@@ -17,7 +17,7 @@ sap.ui.define([
 		return sUrl + sUrlParameters + sHash;
 	}
 
-	return Opa5.extend("qldh.MV_Claim.test.integration.pages.Common", {
+	return Opa5.extend("qldh.ZHR_F_MV_CLAIM.test.integration.pages.Common", {
 
 		iStartTheApp: function (oOptions) {
 			oOptions = oOptions || {};

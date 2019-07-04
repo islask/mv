@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:core="sap.ui.core" xmlns="sap.m"
 	xmlns:smartField="sap.ui.comp.smartfield" xmlns:smartform="sap.ui.comp.smartform"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="qldh.MV_Claim.controller.ClaimInit">
+	controllerName="qldh.ZHR_F_MV_CLAIM.controller.ClaimInit">
 	<Page title="{i18n>title}">
 		<VBox>
 			<form:SimpleForm id="simpleFormEmployee" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4"

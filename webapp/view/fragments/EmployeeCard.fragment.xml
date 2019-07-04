@@ -1,4 +1,4 @@
-<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="qldh.MV_Claim.controller.EmployeeCard" xmlns="sap.m">
+<core:FragmentDefinition xmlns:core="sap.ui.core" controllerName="qldh.ZHR_F_MV_CLAIM.controller.EmployeeCard" xmlns="sap.m">
 	<QuickView placement="Auto" width="320px">
 		<pages>
 			<QuickViewPage title="{Ename}" titleUrl="" description="{i18n>PID}" icon="sap-icon://business-card">

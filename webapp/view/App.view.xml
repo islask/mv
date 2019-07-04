@@ -1,4 +1,4 @@
-<mvc:View controllerName="qldh.MV_Claim.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml"
+<mvc:View controllerName="qldh.ZHR_F_MV_CLAIM.controller.App" xmlns:mvc="sap.ui.core.mvc" xmlns:html="http://www.w3.org/1999/xhtml"
 	displayBlock="true" xmlns="sap.m">
 	<App id="app" busy="{appView>/busy}" busyIndicatorDelay="{appView>/delay}"/>
 </mvc:View>

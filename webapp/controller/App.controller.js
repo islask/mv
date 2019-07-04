@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
 	"use strict";
 
-	return Controller.extend("qldh.MV_Claim.controller.App", {
+	return Controller.extend("qldh.ZHR_F_MV_CLAIM.controller.App", {
 		onInit: function () {
 
 		}

@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"qldh/MV_Claim/controller/App.controller"
+	"qldh/ZHR_F_MV_CLAIM/controller/App.controller"
 ], function (oController) {
 	"use strict";
 
@@ -12,7 +12,7 @@ sap.ui.define([
 	QUnit.test("I should test the app controller loads", function (assert) {
 		var oAppController = new oController();
 		var sName = oAppController.getMetadata().getName();
-		assert.ok(sName, "qldh/MV_Claim.controller.App");
+		assert.ok(sName, "qldh/ZHR_F_MV_CLAIM.controller.App");
 	});
 
 	//this is an example of a Qunit that needs to be fixed 

@@ -2,15 +2,15 @@
 
 sap.ui.define([
 	"sap/ui/test/Opa5",
-	"qldh/MV_Claim/test/integration/pages/Common",
+	"qldh/ZHR_F_MV_CLAIM/test/integration/pages/Common",
 	"sap/ui/test/opaQunit",
-	"qldh/MV_Claim/test/integration/pages/App",
-	"qldh/MV_Claim/test/integration/navigationJourney"
+	"qldh/ZHR_F_MV_CLAIM/test/integration/pages/App",
+	"qldh/ZHR_F_MV_CLAIM/test/integration/navigationJourney"
 ], function (Opa5, Common) {
 	"use strict";
 	Opa5.extendConfig({
 		arrangements: new Common(),
-		viewNamespace: "qldh.MV_Claim.view.",
+		viewNamespace: "qldh.ZHR_F_MV_CLAIM.view.",
 		autoWait: true
 	});
 });
