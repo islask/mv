@@ -1,0 +1,16 @@
+Claim Init View
+1) Bind the UI elements to appear only if previous selection is done
+2) UI elements constraints
+3) Pass data from this view to mileage view
+4) Skip screen for myself scenario only
+
+Mileage View
+1) Recieve data from Init View to set the Form Header attributes
+2) Fix and test the header layout
+3) Fix and test the form layout on desktop/mobile
+4) Add logic for the table entries - create, update , delete
+5) Create a DRAFT automatically
+6) Associate the GUID with attachments & comments, Process flow
+7) Add the components for Process flow and Attachments
+8) oData call binding for the form
+9) Display mode for the form

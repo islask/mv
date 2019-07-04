@@ -1,4 +1,6 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
+sap.ui.define(["sap/ui/core/mvc/Controller",
+	"sap/ui/model/json/JSONModel"
+], function (Controller, JSONModel) {
 	"use strict";
 	return Controller.extend("qldh.MV_Claim.controller.MVClaimForm", {
 		/**
@@ -6,10 +8,36 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (Controller) {
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
 		 * @memberOf qldh.MV_Claim.view.MVClaimForm
 		 */
-		onInit: function () {},
+		onInit: function () {
+
+			if (!this.getView().getBindingContext()) {
+				//this.createEntry();
+				var oJSONModel = new JSONModel({
+					"FormName": "MV_CLAIM"
+				});
+				this.getOwnerComponent().setModel(oJSONModel,
+					"passingParameter");
+				this.getOwnerComponent().setModel(oJSONModel,
+					"passingParameters");
+			}
+			//	this.getView().getModel("viewModel").setProperty("/showMessageStrip", true);
+		},
 		/**
 		 *@memberOf qldh.MV_Claim.controller.MVClaimForm
 		 */
+		_onObjectMatched: function () {
+			if (!this.getView().getBindingContext()) {
+				this.createEntry();
+				var oJSONModel = new JSONModel({
+					"FormName": "ZHR_UPLOAD_FORMS"
+				});
+				this.getOwnerComponent().setModel(oJSONModel,
+					"passingParameter");
+				this.getOwnerComponent().setModel(oJSONModel,
+					"passingParameters");
+			}
+			this.getView().getModel("viewModel").setProperty("/showMessageStrip", true);
+		},
 		action: function (oEvent) {
 			var that = this;
 			var actionParameters = JSON.parse(oEvent.getSource().data("wiring").replace(/'/g, "\""));

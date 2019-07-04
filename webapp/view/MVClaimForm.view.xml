@@ -12,17 +12,16 @@
 					<m:IconTabFilter text="Details" icon="sap-icon://form" id="claimTab">
 						<m:content>
 							<mvc:XMLView viewName="qldh.MV_Claim.view.ClaimForm" type="XML"/>
-							<!--<core:Fragment fragmentName="qldh.MV_Claim.view.fragments.ClaimForm" type="XML"/>-->
 						</m:content>
 					</m:IconTabFilter>
 					<m:IconTabFilter text="Attachments" icon="sap-icon://attachment" id="attachTab">
 						<core:ComponentContainer id="attachments" class="sapUiLargeMarginTop" width="100%" name="qldh.attachments" component="qldh.attachments"
-							propagateModel="true" lifecycle="Application"/>
+							propagateModel="true" lifecycle="Container"/>
 					</m:IconTabFilter>
 					<m:IconTabFilter text="Comments" icon="sap-icon://comment" id="commentsTab"/>
 					<m:IconTabFilter text="Process Flow" icon="sap-icon://employee-approvals" id="pFlowTab">
 						<core:ComponentContainer width="100%" name="qldh.processflow.ZHR_PROCESSFLOW_EM" component="qldh.processflow.ZHR_PROCESSFLOW_EM"
-							propagateModel="true" lifecycle="Application"/></m:IconTabFilter>
+							propagateModel="true" lifecycle="Container"/></m:IconTabFilter>
 				</m:items>
 			</m:IconTabBar>
 		</semantic:content>

@@ -27,6 +27,13 @@ sap.ui.define([
 			this.getOwnerComponent().setModel(personLookupModel, "personLookupModel");
 			this.getOwnerComponent().getModel("personLookupModel").setProperty("/personId", "");
 
+			//Routing
+			if (sap.ui.core.UIComponent.getRouterFor(this).getRoute("ClaimInit") && !sap.ui.core.UIComponent.getRouterFor(this).getRoute(
+					"ClaimInit")
+				.mEventRegistry.patternMatched) {
+				sap.ui.core.UIComponent.getRouterFor(this).getRoute("ClaimInit").attachPatternMatched(this._onObjectMatched, this);
+			}
+
 		},
 		/**
 		 * Fetches the value from the selected item in the table of the person lookup
