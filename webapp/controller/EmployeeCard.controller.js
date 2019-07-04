@@ -4,10 +4,10 @@ sap.ui.define([
 	"./utilities",
 	"sap/ui/core/routing/History"
 ], function (ManagedObject, MessageBox, Utilities, History) {
-	return ManagedObject.extend("qldh.MV_Claim.controller.EmployeeCard", {
+	return ManagedObject.extend("qldh.ZHR_F_MV_CLAIM.controller.EmployeeCard", {
 		constructor: function (oView) {
 			this._oView = oView;
-			this._oControl = sap.ui.xmlfragment(oView.getId(), "qldh.MV_Claim..view.fragments.EmployeeCard", this);
+			this._oControl = sap.ui.xmlfragment(oView.getId(), "qldh.ZHR_F_MV_CLAIM..view.fragments.EmployeeCard", this);
 			this._bInit = false;
 		},
 

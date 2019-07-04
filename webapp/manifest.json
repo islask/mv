@@ -1,7 +1,7 @@
 {
 	"_version": "1.8.0",
 	"sap.app": {
-		"id": "qldh.MV_Claim",
+		"id": "qldh.ZHR_F_MV_CLAIM",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -62,7 +62,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "qldh.MV_Claim.view.App",
+			"viewName": "qldh.ZHR_F_MV_CLAIM.view.App",
 			"type": "XML"
 		},
 		"resourceRoots": {
@@ -109,7 +109,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "qldh.MV_Claim.i18n.i18n"
+					"bundleName": "qldh.ZHR_F_MV_CLAIM.i18n.i18n"
 				}
 			},
 			"": {
@@ -155,7 +155,7 @@
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
-				"viewPath": "qldh.MV_Claim.view",
+				"viewPath": "qldh.ZHR_F_MV_CLAIM.view",
 				"controlAggregation": "pages",
 				"controlId": "app",
 				"clearControlAggregation": false

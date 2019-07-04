@@ -1,6 +1,6 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
-	"qldh/MV_Claim/test/integration/pages/Common",
+	"qldh/ZHR_F_MV_CLAIM/test/integration/pages/Common",
 	"sap/ui/test/actions/Press"
 ], function (Opa5, Common, Press) {
 	"use strict";

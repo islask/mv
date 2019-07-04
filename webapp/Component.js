@@ -2,12 +2,12 @@ sap.ui.define([
 
 		"sap/ui/core/UIComponent",
 		"sap/ui/Device",
-		"qldh/MV_Claim/model/models"
+		"qldh/ZHR_F_MV_CLAIM/model/models"
 	],
 	function (UIComponent, Device, models) {
 		"use strict";
 		//	jQuery.sap.registerModulePath("qldh.personlookup", "/sap/bc/ui5_ui5/sap/zhr_pers_lookup");
-		return UIComponent.extend("qldh.MV_Claim.Component", {
+		return UIComponent.extend("qldh.ZHR_F_MV_CLAIM.Component", {
 
 			metadata: {
 				manifest: "json"

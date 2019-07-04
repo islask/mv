@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns="sap.uxap" xmlns:m="sap.m" xmlns:f="sap.f" xmlns:layout="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form" xmlns:semantic="sap.m.semantic" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="qldh.MV_Claim.controller.MVClaimForm" displayBlock="true" floatingFooter="true">
+	controllerName="qldh.ZHR_F_MV_CLAIM.controller.MVClaimForm" displayBlock="true" floatingFooter="true">
 	<semantic:FullscreenPage enableScrolling="{device>/system/phone}">
 		<semantic:content>
 			<ObjectPageHeader id="objPgHeader" objectTitle="{i18n>title}" objectImageShape="Circle" objectImageURI="sap-icon://insurance-car"
@@ -11,7 +11,7 @@
 				<m:items>
 					<m:IconTabFilter text="Details" icon="sap-icon://form" id="claimTab">
 						<m:content>
-							<mvc:XMLView viewName="qldh.MV_Claim.view.ClaimForm" type="XML"/>
+							<mvc:XMLView viewName="qldh.ZHR_F_MV_CLAIM.view.ClaimForm" type="XML"/>
 						</m:content>
 					</m:IconTabFilter>
 					<m:IconTabFilter text="Attachments" icon="sap-icon://attachment" id="attachTab">

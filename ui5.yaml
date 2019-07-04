@@ -1,6 +1,6 @@
 specVersion: '1.0'
 metadata:
-  name: MV_Claim
+  name: ZHR_F_MV_CLAIM
 type: application
 builder:
   customTasks:

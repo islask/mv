@@ -2,11 +2,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/ui/model/json/JSONModel"
 ], function (Controller, JSONModel) {
 	"use strict";
-	return Controller.extend("qldh.MV_Claim.controller.MVClaimForm", {
+	return Controller.extend("qldh.ZHR_F_MV_CLAIM.controller.MVClaimForm", {
 		/**
 		 * Called when a controller is instantiated and its View controls (if available) are already created.
 		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
-		 * @memberOf qldh.MV_Claim.view.MVClaimForm
+		 * @memberOf qldh.ZHR_F_MV_CLAIM.view.MVClaimForm
 		 */
 		onInit: function () {
 
@@ -23,7 +23,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			//	this.getView().getModel("viewModel").setProperty("/showMessageStrip", true);
 		},
 		/**
-		 *@memberOf qldh.MV_Claim.controller.MVClaimForm
+		 *@memberOf qldh.ZHR_F_MV_CLAIM.controller.MVClaimForm
 		 */
 		_onObjectMatched: function () {
 			if (!this.getView().getBindingContext()) {
